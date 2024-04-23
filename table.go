@@ -22,7 +22,7 @@ type TableWriter struct {
 	ctx       context.Context
 }
 
-func (table *TableWriter) Activate() chan<- Entry {
+func (table *TableWriter) Activate() (chan<- Entry, <-chan WriteError) {
 	table.ch = make(chan Entry, 100)
 	table.chErr = make(chan WriteError, 100)
 	table.ctx = context.Background()
@@ -35,7 +35,7 @@ func (table *TableWriter) Activate() chan<- Entry {
 			}
 		}
 	}()
-	return table.ch
+	return table.ch, table.chErr
 }
 
 func (table *TableWriter) NewEntry(ts time.Time) *Entry {
