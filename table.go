@@ -40,7 +40,7 @@ func (table *TableWriter) Activate() (chan<- Entry, <-chan WriteError) {
 
 func (table *TableWriter) NewEntry(ts time.Time) *Entry {
 	return &Entry{
-		ts:   ts,
+		ts:   ts.In(table.loc),
 		loc:  table.loc,
 		data: make(map[string]any),
 	}
