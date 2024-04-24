@@ -46,10 +46,11 @@ func (table *TableWriter) NewEntry(ts time.Time) *Entry {
 	}
 }
 
-func NewTableWriter(conn *pgxpool.Pool, name, tsColName string) *TableWriter {
+func NewTableWriter(conn *pgxpool.Pool, name, tsColName string, loc *time.Location) *TableWriter {
 	return &TableWriter{
 		conn:      conn,
 		name:      name,
 		tsColName: tsColName,
+		loc:       loc,
 	}
 }

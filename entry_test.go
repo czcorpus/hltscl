@@ -8,7 +8,7 @@ import (
 )
 
 func TestMakeEntry(t *testing.T) {
-	table := NewTableWriter(nil, "foo", "ts")
+	table := NewTableWriter(nil, "foo", "ts", time.UTC)
 	loc, err := time.LoadLocation("Europe/Prague")
 	if err != nil {
 		panic(err)
@@ -31,7 +31,7 @@ func TestMakeEntry(t *testing.T) {
 }
 
 func TestString(t *testing.T) {
-	table := NewTableWriter(nil, "foo", "ts")
+	table := NewTableWriter(nil, "foo", "ts", time.UTC)
 	loc, err := time.LoadLocation("Europe/Prague")
 	if err != nil {
 		panic(err)
